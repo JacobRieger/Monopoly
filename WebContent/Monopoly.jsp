@@ -81,7 +81,7 @@ out.println(ourDice.get_Die2().toString());
 
 %>
 
-<FORM action="/LotsofReptiles/DiceServlet" method="post">
+<FORM action="/Monopoly/DiceServlet" method="post">
 <br>
 <INPUT type="submit" name="Submit" value="Roll Dice">
 </FORM>
