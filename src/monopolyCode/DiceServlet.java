@@ -46,7 +46,7 @@ public class DiceServlet extends HttpServlet {
 		
 		System.out.println(player1.returnLocation());
 		
-		getServletContext().getRequestDispatcher("/AllMyReptiles.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/Monopoly.jsp").forward(request, response);
 		
 		
 	}
