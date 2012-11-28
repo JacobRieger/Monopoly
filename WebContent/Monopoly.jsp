@@ -153,11 +153,20 @@ request.getSession().setAttribute("player4", player4);
 //The next lines generate the HTML to display this card:
 
 //Board
-out.println("<div class=\"Board\"> <div class=\"Dice\">" + ourDice.get_Die1()+ "|||" + ourDice.get_Die2() +"</div> </div>");
+out.println("<div class=\"Board\">");
+out.println("<div class=\"Dice\">" + ourDice.get_Die1()+ "|||" + ourDice.get_Die2() + "</div>");
+out.println("</div>");
 //Player1
-out.println("<div class=\"One\"> <div class = \"PlayerName\">" + player1.returnName() + "</div> <div class=\"PlayerMoney\">" + player1.returnMoney().toString() + " </div> </div>");
+out.println("<div class=\"One\">");
+out.println("<div class = \"PlayerName\">" + player1.returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + player1.returnMoney().toString() + " </div>");
+out.println("</div>");
 //Player2
-out.println("<div class=\"Two\"> <div class = \"PlayerName\">" + player2.returnName() + "</div> <div class=\"PlayerMoney\">" + player2.returnMoney().toString() + " </div> </div>");
+out.println("<div class=\"Two\">");
+out.println("<div class = \"PlayerName\">" + player2.returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + player2.returnMoney().toString() + " </div>");
+out.println("</div>");
+//out.println("<div class=\"Two\"> <div class = \"PlayerName\">" + player2.returnName() + "</div> <div class=\"PlayerMoney\">" + player2.returnMoney().toString() + " </div> </div>");
 //Player3
 out.println("<div class=\"Three\"> <div class = \"PlayerName\">" + player3.returnName() + "</div> <div class=\"PlayerMoney\">" + player3.returnMoney().toString() + " </div></div>");
 //Player4
