@@ -44,7 +44,7 @@ public class DiceServlet extends HttpServlet {
 		request.getSession().setAttribute("dice", ourDice);
 		request.getSession().setAttribute("player1", player1);
 		
-		System.out.println(player1.returnLocation());
+		//System.out.println(player1.returnLocation());
 		
 		getServletContext().getRequestDispatcher("/Monopoly.jsp").forward(request, response);
 		

@@ -7,81 +7,16 @@
 <%@ page import="monopolyCode.Dice" %>
 <%@ page import="monopolyCode.player" %>
 <%@ page import="monopolyCode.building" %>
+<%@ page import="monopolyCode.boardPosition" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<style>
 
-.Board{
-	   position:absolute;
-	   top:0px;
-	   left:280px;
-	   width:700px;
-	   height:600px;
-	   background-image:url(Monopoly_Images/monopoly-board.jpg);
-}
+<%//background Board = (background) request.getSession(true).getAttribute("board"); 
 
-.One {
-	   position: absolute;
-	   top:40px;
-	   left:100px;
-       width:200px; 
-       height:200px; 
-       background-image:url(Monopoly_Images/PlayerSpot.jpg);
- 	 }
-
-.Two {
- 	   position:absolute;
- 	   top:250px;
- 	   left:100px;
- 	   width:200px;
- 	   height:200px;
- 	   background-image: url(Monopoly_Images/PlayerSpot.jpg);
- 	 }
- .Three{
- 	   position:absolute;
- 	   top:40px;
- 	   left:950px;
- 	   width:200px;
- 	   height:200px;
- 	   background-image: url(Monopoly_Images/PlayerSpot.jpg);
- }
- .Four{
- 	   position:absolute;
- 	   top:250px;
- 	   left:950px;
- 	   width:200px;
- 	   height:200px;
- 	   background-image: url(Monopoly_Images/PlayerSpot.jpg);
- }
- 
- .PlayerName{
- 	   position:relative;
- 	   top:10px;
- 	   left:10px;
- }
- 
- .PlayerMoney{
- 	   position:relative;
- 	   top:135px;
- 	   left:60px;
- }
- 
- .Dice{
- 	   position:absolute;
- 
- }
- 
-
-</style>
-
-<title>Monopoly</title>
-</head>
-<body>
-<% 
-
+boardPosition Positioning = (boardPosition) request.getSession(true).getAttribute("positioning");
 background Board = (background) request.getSession(true).getAttribute("board");
 Dice ourDice = (Dice) request.getSession(true).getAttribute("dice");
 player player1 = (player) request.getSession(true).getAttribute("player1");
@@ -94,6 +29,11 @@ if(Board == null)
 {
 	Board = new background();
 	Board.createBoard();
+}
+if(Positioning == null)
+{
+	Positioning = new boardPosition();
+	Positioning.SetBoardValues();
 }
 if(ourDice == null)
 {
@@ -116,18 +56,112 @@ request.getSession().setAttribute("player1", player1);
 request.getSession().setAttribute("player2", player2);
 request.getSession().setAttribute("player3", player3);
 request.getSession().setAttribute("player4", player4);
+
+%>
+
+<style>
+
+.Board{
+	   position:absolute;
+	   top:0px;
+	   left:280px;
+	   width:700px;
+	   height:600px;
+	   z-index: 1;
+	   background-image:url(Monopoly_Images/monopoly-board.jpg);
+}
+
+.One {
+	   position: absolute;
+	   top:40px;
+	   left:100px;
+       width:200px; 
+       height:200px;
+       z-index: 2;
+       background-image:url(Monopoly_Images/PlayerSpot.jpg);
+ 	 }
+
+.Two {
+ 	   position:absolute;
+ 	   top:250px;
+ 	   left:100px;
+ 	   width:200px;
+ 	   height:200px;
+ 	   z-index: 2;
+ 	   background-image: url(Monopoly_Images/PlayerSpot.jpg);
+ 	 }
+ .Three{
+ 	   position:absolute;
+ 	   top:40px;
+ 	   left:950px;
+ 	   width:200px;
+ 	   height:200px;
+ 	   z-index: 2;
+ 	   background-image: url(Monopoly_Images/PlayerSpot.jpg);
+ }
+ .Four{
+ 	   position:absolute;
+ 	   top:250px;
+ 	   left:950px;
+ 	   width:200px;
+ 	   height:200px;
+ 	   z-index: 2;
+ 	   background-image: url(Monopoly_Images/PlayerSpot.jpg);
+ }
+ 
+ .playeronePos{
+ 	   position:relative;
+ 	   top:0px;
+ 	   left:0px;
+ 	   width:98px;
+ 	   height:61px;
+ 	   z-index:10;
+ }
+ 
+ .PlayerName{
+ 	   position:relative;
+ 	   top:133px;
+ 	   left:70px;
+ }
+ 
+ 
+ .PlayerMoney{
+ 	   position:relative;
+ 	   top:144px;
+ 	   left:70px;
+ }
+ 
+ .Dice{
+ 	   position:relative;
+ 	   top:100px;
+ 	   left:300px;
+ }
+ 
+ 
+
+ }
+ 
+
+</style>
+
+<title>Monopoly</title>
+</head>
+<body>
+<% 
+
+
 //The next lines generate the HTML to display this card:
 
 //Board
-out.println("<div class=\"Board\"> </div>");
+out.println("<div class=\"Board\"> <div class=\"Dice\">" + ourDice.get_Die1()+ "|||" + ourDice.get_Die2() +"</div> </div>");
 //Player1
-out.println("<div class=\"One\"> <div class = \"PlayerName\"> Player 1 <div class=\"PlayerMoney\">" + player1.returnMoney().toString() + "</div> </div> </div>");
+out.println("<div class=\"One\"> <div class = \"PlayerName\">" + player1.returnName() + "</div> <div class=\"PlayerMoney\">" + player1.returnMoney().toString() + " </div> </div>");
 //Player2
-out.println("<div class=\"Two\"> <div class = \"PlayerName\"> Player 2 <div class=\"PlayerMoney\">" + player2.returnMoney().toString() + "</div> </div> </div>");
+out.println("<div class=\"Two\"> <div class = \"PlayerName\">" + player2.returnName() + "</div> <div class=\"PlayerMoney\">" + player2.returnMoney().toString() + " </div> </div>");
 //Player3
-out.println("<div class=\"Three\"> <div class = \"PlayerName\"> Player 3 <div class=\"PlayerMoney\">" + player3.returnMoney().toString() + "</div> </div></div>");
+out.println("<div class=\"Three\"> <div class = \"PlayerName\">" + player3.returnName() + "</div> <div class=\"PlayerMoney\">" + player3.returnMoney().toString() + " </div></div>");
 //Player4
-out.println("<div class=\"Four\"> <div class = \"PlayerName\"> Player 4 <div class=\"PlayerMoney\">" + player1.returnMoney().toString() + "</div> </div> </div>");
+out.println("<div class=\"Four\"> <div class = \"PlayerName\">" + player4.returnName() +  "</div> <div class=\"PlayerMoney\">" + player1.returnMoney().toString() + " </div> </div>");
 
 String diceroll = ourDice.return_total().toString();
 
