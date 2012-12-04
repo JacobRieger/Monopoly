@@ -110,12 +110,42 @@ request.getSession().setAttribute("player4", player4);
  }
  
  .playeronePos{
- 	   position:relative;
- 	   top:0px;
- 	   left:0px;
- 	   width:98px;
- 	   height:61px;
+ 	   position:absolute;
+ 	   top:<%out.println(Positioning.getTop(player1.returnLocation())+ "px;");%>
+ 	   left:<%out.println(Positioning.getLeft(player1.returnLocation())+ "px;");%>
+ 	   width:20px;
+ 	   height:20px;
  	   z-index:10;
+ 	   background-image: url(Monopoly_Images/One.png);
+ }
+ .playertwoPos{
+  	   position:absolute;
+  	   top:<%out.println(Positioning.get2Top(player2.returnLocation())+ "px;");%>
+  	   left:<%out.println(Positioning.get2Left(player2.returnLocation())+ "px;");%>
+  	   width:20px;
+  	   height:20px;
+  	   z-index:10;
+  	   background-image: url(Monopoly_Images/Two.png);
+ }
+ 
+ .playerthreePos{
+  	   position:absolute;
+  	   top:<%out.println(Positioning.get3Top(player3.returnLocation())+ "px;");%>
+  	   left:<%out.println(Positioning.get3Left(player3.returnLocation())+ "px;");%>
+  	   width:20px;
+  	   height:20px;
+  	   z-index:10;
+  	   background-image: url(Monopoly_Images/Three.png);
+ }
+ 
+ .playerfourPos{
+  	   position:absolute;
+  	   top:<%out.println(Positioning.get4Top(player4.returnLocation())+ "px;");%>
+  	   left:<%out.println(Positioning.get4Left(player4.returnLocation())+ "px;");%>
+  	   width:20px;
+  	   height:20px;
+  	   z-index:10;
+  	   background-image: url(Monopoly_Images/Four.png);
  }
  
  .PlayerName{
@@ -155,6 +185,10 @@ request.getSession().setAttribute("player4", player4);
 //Board
 out.println("<div class=\"Board\">");
 out.println("<div class=\"Dice\">" + ourDice.get_Die1()+ "|||" + ourDice.get_Die2() + "</div>");
+out.println("<div class=\"playeronePos\"> </div>");
+out.println("<div class=\"playertwoPos\"> </div>");
+out.println("<div class=\"playerthreePos\"> </div>");
+out.println("<div class=\"playerfourPos\"> </div>");
 out.println("</div>");
 //Player1
 out.println("<div class=\"One\">");
@@ -166,12 +200,16 @@ out.println("<div class=\"Two\">");
 out.println("<div class = \"PlayerName\">" + player2.returnName() + "</div>");
 out.println("<div class=\"PlayerMoney\">" + player2.returnMoney().toString() + " </div>");
 out.println("</div>");
-//out.println("<div class=\"Two\"> <div class = \"PlayerName\">" + player2.returnName() + "</div> <div class=\"PlayerMoney\">" + player2.returnMoney().toString() + " </div> </div>");
 //Player3
-out.println("<div class=\"Three\"> <div class = \"PlayerName\">" + player3.returnName() + "</div> <div class=\"PlayerMoney\">" + player3.returnMoney().toString() + " </div></div>");
+out.println("<div class=\"Three\">");
+out.println("<div class = \"PlayerName\">" + player3.returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + player3.returnMoney().toString() + " </div>");
+out.println("</div>");
 //Player4
-out.println("<div class=\"Four\"> <div class = \"PlayerName\">" + player4.returnName() +  "</div> <div class=\"PlayerMoney\">" + player1.returnMoney().toString() + " </div> </div>");
-
+out.println("<div class=\"Four\">");
+out.println("<div class = \"PlayerName\">" + player4.returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + player4.returnMoney().toString() + " </div>");
+out.println("</div>");
 String diceroll = ourDice.return_total().toString();
 
 
