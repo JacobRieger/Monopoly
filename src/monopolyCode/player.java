@@ -10,14 +10,17 @@ public class player {
 	private ArrayList<building> landProperty;
 	private ArrayList<Integer> treasureProperty;
 	private Integer netAsset;
-	private Boolean jail;
-	public player(String pName) {
+	private Integer penaltyTurn;
+	private Boolean status;
+	public player(String pName, Boolean state) {
 		money = 2000;
 		currentLocation = 0;
 		playerName = pName;
 		landProperty = new ArrayList<building>();
 		treasureProperty = new ArrayList<Integer>();
 		netAsset = money;
+		penaltyTurn = 0;
+		status = state;
 	}
 	
 
@@ -35,6 +38,10 @@ public class player {
 
 	public Integer returnAsset() {
 		return netAsset;
+	}
+	
+	public Boolean checkTurn(){
+		return status;
 	}
 	
 	public void incrementLocation(Integer diceroll)
@@ -59,6 +66,25 @@ public class player {
 		}
 	}
 
+	public void addMoney(Integer temp){
+		money = money - temp;
+	}
+	
+	public void recieveMoney(Integer temp){
+		money = money + temp;
+	}
+	
+	public Boolean checkBroke(){
+		if(money < 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public void gameover(){
+		penaltyTurn = 99999;
+	}
+	
 	public Boolean pOwned(Integer location) {
 
 		if (landProperty.contains(location)) {
@@ -77,7 +103,8 @@ public class player {
 		}
 	}
 	public Boolean isJail(){
-		if(jail){
+		if(penaltyTurn > 0){
+			penaltyTurn--;
 			return true;
 		}
 		else {
