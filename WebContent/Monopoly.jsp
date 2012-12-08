@@ -165,7 +165,6 @@ request.getSession().setAttribute("player4", player4);
  	   position:relative;
  	   top:100px;
  	   left:300px;
- 	   background-image = url()
  }
  
  
@@ -185,11 +184,7 @@ request.getSession().setAttribute("player4", player4);
 
 //Board
 out.println("<div class=\"Board\">");
-out.println("<div class=\"Dice\">" + ourDice.get_Die1()+ "|||" + ourDice.get_Die2());
-out.println("<FORM action=\"/Monopoly/DiceServlet\" method=\"post\">");
-out.println("<br>");
-out.println("<INPUT type=\"submit\" name=\"Submit\" value=\"Roll Dice\">");
-out.println("</FORM> </div>");
+out.println("<div class=\"Dice\">" + ourDice.get_Die1()+ "|||" + ourDice.get_Die2() + "</div>");
 out.println("<div class=\"playeronePos\"> </div>");
 out.println("<div class=\"playertwoPos\"> </div>");
 out.println("<div class=\"playerthreePos\"> </div>");
@@ -218,8 +213,20 @@ out.println("</div>");
 String diceroll = ourDice.return_total().toString();
 
 
-
+/*
+out.println("Player One Position");
+out.println(player1.returnLocation());
+out.println("Die:");
+out.println(ourDice.get_Die1().toString());
+out.println("Die:");
+out.println(ourDice.get_Die2().toString());
+*/
 %>
+
+<FORM action="/Monopoly/DiceServlet" method="post">
+<br>
+<INPUT type="submit" name="Submit" value="Roll Dice">
+</FORM>
 
 
 
