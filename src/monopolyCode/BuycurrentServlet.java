@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DiceServlet
+ * Servlet implementation class BuycurrentServlet
  */
-@WebServlet("/DiceServlet")
-public class DiceServlet extends HttpServlet {
+@WebServlet("/BuycurrentServlet")
+public class BuycurrentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DiceServlet() {
+    public BuycurrentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,16 +37,14 @@ public class DiceServlet extends HttpServlet {
 		
 		monopoly ourgame = (monopoly) request.getSession(true).getAttribute("ourgame");
 		
-		Integer movement = ourgame.dice();
-		if(!ourgame.getCurrentPlayer().hasRolled())
+		Integer Location = ourgame.getCurrentPlayer().returnLocation();
+		if(!ourgame.returnBuildings().get(Location).returnOwned())
 		{
-			ourgame.getCurrentPlayer().incrementLocation(movement);
-			ourgame.getCurrentPlayer().set_hasRolled(true);
+			//System.out.println("Building Bought by" + ourgame.getCurrentPlayer().returnName());
+			ourgame.buyCurrentLocation();
 		}
-
 		
 		getServletContext().getRequestDispatcher("/Monopoly.jsp").forward(request, response);
-		
 		
 	}
 

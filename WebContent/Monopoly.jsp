@@ -2,12 +2,13 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="monopolyCode.MonopolyBoard" %>
+<%@ page import="monopolyCode.monopoly" %>
 <%@ page import="monopolyCode.background" %>
 <%@ page import="monopolyCode.Dice" %>
 <%@ page import="monopolyCode.player" %>
 <%@ page import="monopolyCode.building" %>
 <%@ page import="monopolyCode.boardPosition" %>
+<%@ page import="monopolyCode.MonopolyBoard" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,10 +20,7 @@
 boardPosition Positioning = (boardPosition) request.getSession(true).getAttribute("positioning");
 background Board = (background) request.getSession(true).getAttribute("board");
 Dice ourDice = (Dice) request.getSession(true).getAttribute("dice");
-player player1 = (player) request.getSession(true).getAttribute("player1");
-player player2 = (player) request.getSession(true).getAttribute("player2");
-player player3 = (player) request.getSession(true).getAttribute("player3");
-player player4 = (player) request.getSession(true).getAttribute("player4");
+monopoly ourgame = (monopoly) request.getSession(true).getAttribute("ourgame");
 
 
 if(Board == null)
@@ -30,32 +28,27 @@ if(Board == null)
 	Board = new background();
 	Board.createBoard();
 }
+if(ourDice == null)
+{
+	ourDice = new Dice();
+}
 if(Positioning == null)
 {
 	Positioning = new boardPosition();
 	Positioning.SetBoardValues();
 }
-if(ourDice == null)
+if(ourgame == null)
 {
-	ourDice = new Dice();
+	ourgame = new monopoly();
+	
 }
 
-if(player1 == null)
-{
-	player1 = new player("Player One");	
-	player2 = new player("Player Two");
-	player3 = new player("Player Three");
-	player4 = new player("Player Four");
-}
 
 
 
 request.getSession().setAttribute("board", Board);
 request.getSession().setAttribute("dice", ourDice);
-request.getSession().setAttribute("player1", player1);
-request.getSession().setAttribute("player2", player2);
-request.getSession().setAttribute("player3", player3);
-request.getSession().setAttribute("player4", player4);
+request.getSession().setAttribute("ourgame", ourgame);
 
 %>
 
@@ -111,8 +104,8 @@ request.getSession().setAttribute("player4", player4);
  
  .playeronePos{
  	   position:absolute;
- 	   top:<%out.println(Positioning.getTop(player1.returnLocation())+ "px;");%>
- 	   left:<%out.println(Positioning.getLeft(player1.returnLocation())+ "px;");%>
+ 	   top:<%out.println(Positioning.getTop(ourgame.getPlayera().returnLocation())+ "px;");%>
+ 	   left:<%out.println(Positioning.getLeft(ourgame.getPlayera().returnLocation())+ "px;");%>
  	   width:20px;
  	   height:20px;
  	   z-index:10;
@@ -120,8 +113,8 @@ request.getSession().setAttribute("player4", player4);
  }
  .playertwoPos{
   	   position:absolute;
-  	   top:<%out.println(Positioning.get2Top(player2.returnLocation())+ "px;");%>
-  	   left:<%out.println(Positioning.get2Left(player2.returnLocation())+ "px;");%>
+  	   top:<%out.println(Positioning.get2Top(ourgame.getPlayerb().returnLocation())+ "px;");%>
+  	   left:<%out.println(Positioning.get2Left(ourgame.getPlayerb().returnLocation())+ "px;");%>
   	   width:20px;
   	   height:20px;
   	   z-index:10;
@@ -130,8 +123,8 @@ request.getSession().setAttribute("player4", player4);
  
  .playerthreePos{
   	   position:absolute;
-  	   top:<%out.println(Positioning.get3Top(player3.returnLocation())+ "px;");%>
-  	   left:<%out.println(Positioning.get3Left(player3.returnLocation())+ "px;");%>
+  	   top:<%out.println(Positioning.get3Top(ourgame.getPlayerc().returnLocation())+ "px;");%>
+  	   left:<%out.println(Positioning.get3Left(ourgame.getPlayerc().returnLocation())+ "px;");%>
   	   width:20px;
   	   height:20px;
   	   z-index:10;
@@ -140,8 +133,8 @@ request.getSession().setAttribute("player4", player4);
  
  .playerfourPos{
   	   position:absolute;
-  	   top:<%out.println(Positioning.get4Top(player4.returnLocation())+ "px;");%>
-  	   left:<%out.println(Positioning.get4Left(player4.returnLocation())+ "px;");%>
+  	   top:<%out.println(Positioning.get4Top(ourgame.getPlayerd().returnLocation())+ "px;");%>
+  	   left:<%out.println(Positioning.get4Left(ourgame.getPlayerd().returnLocation())+ "px;");%>
   	   width:20px;
   	   height:20px;
   	   z-index:10;
@@ -184,7 +177,7 @@ request.getSession().setAttribute("player4", player4);
 
 //Board
 out.println("<div class=\"Board\">");
-out.println("<div class=\"Dice\">" + ourDice.get_Die1()+ "|||" + ourDice.get_Die2() + "</div>");
+out.println("<div class=\"Dice\">" + ourgame.getCurrentPlayer().returnName() + "</div>");
 out.println("<div class=\"playeronePos\"> </div>");
 out.println("<div class=\"playertwoPos\"> </div>");
 out.println("<div class=\"playerthreePos\"> </div>");
@@ -192,35 +185,27 @@ out.println("<div class=\"playerfourPos\"> </div>");
 out.println("</div>");
 //Player1
 out.println("<div class=\"One\">");
-out.println("<div class = \"PlayerName\">" + player1.returnName() + "</div>");
-out.println("<div class=\"PlayerMoney\">" + player1.returnMoney().toString() + " </div>");
+out.println("<div class = \"PlayerName\">" + ourgame.getPlayera().returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + ourgame.getPlayera().returnMoney().toString() + " </div>");
 out.println("</div>");
 //Player2
 out.println("<div class=\"Two\">");
-out.println("<div class = \"PlayerName\">" + player2.returnName() + "</div>");
-out.println("<div class=\"PlayerMoney\">" + player2.returnMoney().toString() + " </div>");
+out.println("<div class = \"PlayerName\">" + ourgame.getPlayerb().returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + ourgame.getPlayerb().returnMoney().toString() + " </div>");
 out.println("</div>");
 //Player3
 out.println("<div class=\"Three\">");
-out.println("<div class = \"PlayerName\">" + player3.returnName() + "</div>");
-out.println("<div class=\"PlayerMoney\">" + player3.returnMoney().toString() + " </div>");
+out.println("<div class = \"PlayerName\">" + ourgame.getPlayerc().returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + ourgame.getPlayerc().returnMoney().toString() + " </div>");
 out.println("</div>");
 //Player4
 out.println("<div class=\"Four\">");
-out.println("<div class = \"PlayerName\">" + player4.returnName() + "</div>");
-out.println("<div class=\"PlayerMoney\">" + player4.returnMoney().toString() + " </div>");
+out.println("<div class = \"PlayerName\">" + ourgame.getPlayerd().returnName() + "</div>");
+out.println("<div class=\"PlayerMoney\">" + ourgame.getPlayerd().returnMoney().toString() + " </div>");
 out.println("</div>");
-String diceroll = ourDice.return_total().toString();
+//String diceroll = ourDice.return_total().toString();
 
 
-/*
-out.println("Player One Position");
-out.println(player1.returnLocation());
-out.println("Die:");
-out.println(ourDice.get_Die1().toString());
-out.println("Die:");
-out.println(ourDice.get_Die2().toString());
-*/
 %>
 
 <FORM action="/Monopoly/DiceServlet" method="post">
@@ -228,6 +213,15 @@ out.println(ourDice.get_Die2().toString());
 <INPUT type="submit" name="Submit" value="Roll Dice">
 </FORM>
 
+<FORM action="/Monopoly/BuycurrentServlet" method="post">
+<br>
+<INPUT type="submit" name="Submit" value= "Buy">
+</FORM>
+
+<FORM action="/Monopoly/EndturnServlet" method="post">
+<br>
+<INPUT type="submit" name="Submit" value= "End Turn">
+</FORM>
 
 
 </body>

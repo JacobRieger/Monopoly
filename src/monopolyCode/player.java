@@ -12,6 +12,7 @@ public class player {
 	private Integer netAsset;
 	private Integer penaltyTurn;
 	private Boolean status;
+	private Boolean hasRolled;
 	public player(String pName, Boolean state) {
 		money = 2000;
 		currentLocation = 0;
@@ -21,6 +22,7 @@ public class player {
 		netAsset = money;
 		penaltyTurn = 0;
 		status = state;
+		hasRolled = false;
 	}
 	
 
@@ -111,5 +113,21 @@ public class player {
 			return false;
 		}
 	}
+	
+	public void set_status(boolean Status)
+	{
+		status = Status;
+	}
+	
+	public void set_hasRolled(Boolean roll)
+	{
+		hasRolled = roll;
+	}
+	
+	public boolean hasRolled()
+	{
+		return hasRolled;
+	}
+	
 
 }

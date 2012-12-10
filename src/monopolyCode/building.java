@@ -8,13 +8,15 @@ public class building {
 	private Integer buyPrice;
 	private Integer nobels;
 	private Integer visitorPrice;
+	private Integer prop;
 	private Boolean owned;
-	public building(String name, Integer initialPrice, Integer vPrice, Integer node, Integer prop){
+	public building(String name, Integer initialPrice, Integer vPrice, Integer node, Integer Prop){
 		buildingName = name;
 		buyPrice = initialPrice;
 		nobels = 0; //max 3
 		visitorPrice = vPrice;
 		buildingNode = node;
+		prop = Prop;
 		if(prop == 0){
 		owned = false;
 		}
@@ -39,5 +41,15 @@ public class building {
 	
 	public Integer returnPenalty(){
 		return visitorPrice;
+	}
+	
+	public boolean returnOwned()
+	{
+		return owned;
+	}
+	
+	public Integer buyPrice()
+	{
+		return buyPrice;
 	}
 }

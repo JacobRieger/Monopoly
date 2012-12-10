@@ -5,16 +5,23 @@ import java.util.Random;
 
 public class monopoly {
 
-	private player a(a, true);
-	private player b(b, false);
-	private player c(c, false);
-	private player d(d, false);
+	private player a = new player("a", true);
+	private player b = new player("b", false);
+	private player c = new player("c", false);
+	private player d = new player("d", false);
 	private Integer dice;
 	private ArrayList<building> buildings;
 
 	public monopoly() {
 		dice = 0;
 		buildings = new ArrayList<building>();
+		
+		building empty = new building("Empty", 0,0,0,5);
+		
+		for(int i = 0; i < 40; i++)
+		{
+			buildings.add(i, empty);
+		}
 
 		building start = new building("Go", 0, -200, 0, 5); // this is go, so
 																// visiting
@@ -213,7 +220,7 @@ public class monopoly {
 			}
 			else{
 			while (c.checkTurn()) {
-				if(buildings.get(c.reTurnLocation()).returnOwned()){
+				if(buildings.get(c.returnLocation()).returnOwned()){
 					c.addMoney(buildings.get(c.returnLocation()).returnPenalty());
 					if(buildings.get(c.returnLocation()).returnWhoOwn() == 1){
 						a.recieveMoney(buildings.get(c.returnLocation()).returnPenalty());
@@ -244,7 +251,7 @@ public class monopoly {
 			}
 			else{
 			while (d.checkTurn()) {
-				if(buildings.get(d.reTurnLocation()).returnOwned()){
+				if(buildings.get(d.returnLocation()).returnOwned()){
 					d.addMoney(buildings.get(d.returnLocation()).returnPenalty());
 					if(buildings.get(d.returnLocation()).returnWhoOwn() == 1){
 						a.recieveMoney(buildings.get(d.returnLocation()).returnPenalty());
@@ -273,21 +280,84 @@ public class monopoly {
 	}
 	
 	public void endTurn(){
-		if(a.checkTurn){
-			a.turn = false;
-			b.turn = true;
+		if(a.checkTurn()){
+			a.set_status(false);
+			b.set_status(true);
 		}
-		else if(b.checkTurn){
-			b.turn = false;
-			c.turn = true;
+		else if(b.checkTurn()){
+			b.set_status(false);
+			c.set_status(true);
 		}
-		else if(c.checkTurn){
-			c.turn = false;
-			d.turn = true;
+		else if(c.checkTurn()){
+			c.set_status(false);
+			d.set_status(true);
 		}
-		else if(d.checkTurn){
-			d.turn = false;
-			a.turn = true;
+		else if(d.checkTurn()){
+			d.set_status(false);
+			a.set_status(true);
 		}
 	}
+	
+	public player getCurrentPlayer()
+	{
+		if(a.checkTurn()) return a;
+		if(b.checkTurn()) return b;
+		if(c.checkTurn()) return c;
+		if(d.checkTurn()) return d;
+		
+		System.out.println("Error in getCurrentPlayer");
+		return a;
+	}
+	
+	public void buyCurrentLocation()
+	{
+		player current = getCurrentPlayer();
+		building currentb = buildings.get(current.returnLocation());
+		Integer Price = currentb.buyPrice();
+		
+		
+		if(!currentb.returnOwned())
+		{
+			if(current.returnName() == "a")
+			{
+				currentb.changeProp(1);
+			}
+			if(current.returnName() == "b")
+			{
+				currentb.changeProp(2);
+			}
+			if(current.returnName() == "c")
+			{
+				currentb.changeProp(3);
+			}
+			if(current.returnName() == "d")
+			{
+				currentb.changeProp(4);
+			}
+			current.addMoney(Price);
+		}
+	}
+	
+	public ArrayList<building> returnBuildings()
+	{
+		return buildings;
+	}
+	
+	public player getPlayera()
+	{
+		return a;
+	}
+	public player getPlayerb()
+	{
+		return b;
+	}
+	public player getPlayerc()
+	{
+		return c;
+	}
+	public player getPlayerd()
+	{
+		return d;
+	}
+	
 }
