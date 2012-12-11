@@ -30,110 +30,149 @@ public class monopoly {
 																// number,
 																// giving people
 																// who visits
-																// here money.
 		buildings.add(0, start);
 
 		building bField = new building("Business Field", 60, 20, 1, 0);
 		buildings.add(1, bField);
 
 		// chest
+		building.chest1 = new building("Chest1", 0, 0, 2, 0);
+		buildings.add(2, chest1);
 
 		building fField = new building("Farrand Field", 60, 20, 3, 0);
 		buildings.add(3, fField);
 		
 		// parking permit
+		building.parkingpermit = new building("parkingpermit", 200, 20, 4, 0);
+		buildings.add(4, parkingpermit);
 		
 		// Jump
+		building.jump = new building("jump", 200, 30, 5, 0);
+		buildinds.add(5, jump);
 
 		building Whealthcen = new building("Wardenburg Health Center", 100, 40,
 				6, 0);
 		buildings.add(6, Whealthcen);
 
 		// chance
+		building.chance1 = new building("chance1", 0, 0, 7, 0);
+		buildings.add(7, chance1);
 
 		building bookstore = new building("CU Bookstore", 100, 40, 8, 0);
 		buildings.add(8, bookstore);
 
 		building museum = new building("CU Art Museum", 120, 50, 9, 0);
 		buildings.add(9, museum);
+		
+		//jail
+		building jail = new building("jail", 0, 0, 10, 0);
+		buildings.add(10, jail);
 
-		building visit = new building("Just Visiting", 0, 0, 10, 5);
-		buildings.add(10, visit);
+		building visit = new building("Just Visiting", 0, 0, 11, 5);
+		buildings.add(11, visit);
 
-		building mathlib = new building("Math Library", 140, 60, 11, 0);
-		buildings.add(11, mathlib);
+		building mathlib = new building("Math Library", 140, 60, 12, 0);
+		buildings.add(12, mathlib);
 
 		// parking permit
+		building buypermit = new building("buy permit", 150, 60, 13, 0);
+		buildings.add(13, buypermit);
 
-		building musiclib = new building("Music Library", 140, 60, 13, 0);
-		buildings.add(13, musiclib);
+		building musiclib = new building("Music Library", 140, 60, 14, 0);
+		buildings.add(14, musiclib);
 
-		building norlinlib = new building("Norlin Library", 160, 70, 14, 0);
-		buildings.add(14, norlinlib);
+		building norlinlib = new building("Norlin Library", 160, 70, 15, 0);
+		buildings.add(15, norlinlib);
 
 		// buffbus
+		building buffbus = new building("buffbus", 200, 75, 16, 0);
+		buildings.add(16, buffbus);
 
-		building brackett = new building("Brackett Hall", 180, 80, 16, 0);
-		buildings.add(16, brackett);
-
-		// chance
-
-		building crosman = new building("Crosman Hall", 180, 80, 18, 0);
-		buildings.add(18, crosman);
-
-		building aden = new building("Aden Hall", 200, 90, 19, 0);
-		buildings.add(19, aden);
-
-		building c4c = new building("C4C", 220, 100, 20, 0);
-		buildings.add(20, c4c);
-
-		// chance
-
-		building fhall = new building("Farrand Hall", 220, 100, 22, 0);
-		buildings.add(22, fhall);
-
-		building lhall = new building("Libby Hall", 240, 110, 23, 0);
-		buildings.add(23, lhall);
-
-		// HOP
-
-		building folsom = new building("Folsom Stadium", 260, 120, 25, 0);
-		buildings.add(26, folsom);
-
-		building coors = new building("Coors Event Center", 260, 120, 26, 0);
-		buildings.add(27, coors);
-
-		// motorcycle permit
-
-		building reccenter = new building("Rec Center", 280, 130, 29, 0);
-		buildings.add(29, reccenter);
-
-		// Go TO
-
-		building engine = new building("Engineering Center", 300, 140, 31,
-				0);
-		buildings.add(31, engine);
-
-		building koelbel = new building("Koelbel Building", 300, 140, 32, 0);
-		buildings.add(32, koelbel);
+		building brackett = new building("Brackett Hall", 180, 80, 17, 0);
+		buildings.add(17, brackett);
 
 		// chest
+		building chest2 = new building("chest2", 0, 0, 18, 0);
+		buildings.add(18, chest2);
+		
 
-		building UMC = new building("University Memorial Center", 320, 150, 34,
+		building crosman = new building("Crosman Hall", 180, 80, 19, 0);
+		buildings.add(19, crosman);
+
+		building aden = new building("Aden Hall", 200, 90, 20, 0);
+		buildings.add(20, aden);
+		
+		//free parking
+		building freeparking = new building("free parking", 0, 0, 21, 0);
+		buildings.add(21, freeparking);
+
+		building c4c = new building("C4C", 220, 100, 22, 0);
+		buildings.add(22, c4c);
+
+		// chance
+		building chance2 = new building("chance2", 0, 0, 23, 0);
+		buildings.add(23, chance2);
+
+		building fhall = new building("Farrand Hall", 220, 100, 24, 0);
+		buildings.add(24, fhall);
+
+		building lhall = new building("Libby Hall", 240, 110, 25, 0);
+		buildings.add(25, lhall);
+
+		// HOP
+		building HOP = new builindg("HOP", 200, 115, 26, 0);
+		buildings.add(26, HOP);
+
+		building folsom = new building("Folsom Stadium", 260, 120, 27, 0);
+		buildings.add(27, folsom);
+
+		building coors = new building("Coors Event Center", 260, 120, 28, 0);
+		buildings.add(28, coors);
+
+		// motorcycle permit
+		building mpermit = new building("motorcycle permit", 150, 125, 29, 0);
+		buildings.add(29, mpermit);
+
+		building reccenter = new building("Rec Center", 280, 130, 30, 0);
+		buildings.add(30, reccenter);
+
+		// Go TO
+		building gotojail = new building("Go to jail", 0, 0, 31, 0);
+		buildings.add(31, gotojail);
+
+		building engine = new building("Engineering Center", 300, 140, 32,
 				0);
-		buildings.add(34, UMC);
+		buildings.add(32, engine);
+
+		building koelbel = new building("Koelbel Building", 300, 140, 33, 0);
+		buildings.add(33, koelbel);
+
+		// chest
+		building chest3 - new building("chance3", 0, 0, 34, 0);
+		buildings.add(34, chest3);
+
+		building UMC = new building("University Memorial Center", 320, 150, 35,
+				0);
+		buildings.add(35, UMC);
 
 		// stampede
+		building stampede = new building("stampede", 200, 160, 36, 0);
+		buildings.add(36, stampede);
+		
 		// chance
-
-		building willvil = new building("Williams Village", 350, 170, 37, 0);
-		buildings.add(37, willvil);
+		building chance3 = new building("chance3", 0, 0, 37, 0);
+		buildings.add(37, chance3);
+		
+		building willvil = new building("Williams Village", 350, 170, 38, 0);
+		buildings.add(38, willvil);
 
 		// parking ticket
+		building parkingticket = new building("parking ticket", 120, 180, 39, 0);
+		buildings.add(39, parkingticket);
 
-		building bearcreek = new building("Bear Creek Apts", 400, 190, 39,
+		building bearcreek = new building("Bear Creek Apts", 400, 190, 40,
 				0);
-		buildings.add(39, bearcreek);
+		buildings.add(40, bearcreek);
 	}
 
 	public Integer dice() {
