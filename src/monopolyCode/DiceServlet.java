@@ -43,7 +43,9 @@ public class DiceServlet extends HttpServlet {
 			ourgame.getCurrentPlayer().incrementLocation(movement);
 			ourgame.getCurrentPlayer().set_hasRolled(true);
 		}
+		
 
+		request.getSession(true).setAttribute("ourgame", ourgame);
 		
 		getServletContext().getRequestDispatcher("/Monopoly.jsp").forward(request, response);
 		

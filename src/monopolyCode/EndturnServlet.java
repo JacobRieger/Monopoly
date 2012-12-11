@@ -43,6 +43,7 @@ public class EndturnServlet extends HttpServlet {
 		ourgame.getPlayerd().set_hasRolled(false);
 		ourgame.whosTurn();
 		
+		request.getSession(true).setAttribute("ourgame", ourgame);
 		
 		getServletContext().getRequestDispatcher("/Monopoly.jsp").forward(request, response);
 		

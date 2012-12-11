@@ -44,6 +44,8 @@ public class BuycurrentServlet extends HttpServlet {
 			ourgame.buyCurrentLocation();
 		}
 		
+		request.getSession(true).setAttribute("ourgame", ourgame);
+		
 		getServletContext().getRequestDispatcher("/Monopoly.jsp").forward(request, response);
 		
 	}
