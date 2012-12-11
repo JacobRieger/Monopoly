@@ -129,5 +129,10 @@ public class player {
 		return hasRolled;
 	}
 	
+	public void addBuilding(building Building)
+	{
+		landProperty.add(Building);
+	}
+	
 
 }

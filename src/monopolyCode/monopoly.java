@@ -316,7 +316,7 @@ public class monopoly {
 		Integer Price = currentb.buyPrice();
 		
 		
-		if(!currentb.returnOwned())
+		if(!currentb.returnOwned() && current.returnMoney() > Price)
 		{
 			if(current.returnName() == "a")
 			{
@@ -335,6 +335,7 @@ public class monopoly {
 				currentb.changeProp(4);
 			}
 			current.addMoney(Price);
+			current.addBuilding(currentb);
 		}
 	}
 	
@@ -359,5 +360,7 @@ public class monopoly {
 	{
 		return d;
 	}
+	
+	
 	
 }

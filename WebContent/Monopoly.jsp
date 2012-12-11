@@ -177,7 +177,7 @@ request.getSession().setAttribute("ourgame", ourgame);
 
 //Board
 out.println("<div class=\"Board\">");
-out.println("<div class=\"Dice\">" + ourgame.getCurrentPlayer().returnName() + "</div>");
+out.println("<div class=\"Dice\">" +  "Current Player is " + ourgame.getCurrentPlayer().returnName() + "</div>");
 out.println("<div class=\"playeronePos\"> </div>");
 out.println("<div class=\"playertwoPos\"> </div>");
 out.println("<div class=\"playerthreePos\"> </div>");
@@ -221,6 +221,11 @@ out.println("</div>");
 <FORM action="/Monopoly/EndturnServlet" method="post">
 <br>
 <INPUT type="submit" name="Submit" value= "End Turn">
+</FORM>
+
+<FORM action="/Monopoly/ResetGameServlet" method="post">
+<br>
+<INPUT type="submit" name="Submit" value= "RESET">
 </FORM>
 
 
