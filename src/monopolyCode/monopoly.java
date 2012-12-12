@@ -357,25 +357,32 @@ public class monopoly {
 		
 		if(!currentb.returnOwned() && current.returnMoney() > Price)
 		{
-			if(current.returnName() == "a")
+			if(current.equals(this.getPlayera()))
 			{
 				currentb.changeProp(1);
 			}
-			if(current.returnName() == "b")
+			if(current.equals(this.getPlayerb()))
 			{
 				currentb.changeProp(2);
 			}
-			if(current.returnName() == "c")
+			if(current.equals(this.getPlayerc()))
 			{
 				currentb.changeProp(3);
 			}
-			if(current.returnName() == "d")
+			if(current.equals(this.getPlayerd()))
 			{
 				currentb.changeProp(4);
 			}
 			current.addMoney(Price);
 			current.addBuilding(currentb);
 		}
+	}
+	
+	public void ChangeCurrentPlayerName(String newName)
+	{
+		player current = this.getCurrentPlayer();
+		
+		current.setName(newName);
 	}
 	
 	public ArrayList<building> returnBuildings()

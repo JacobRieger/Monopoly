@@ -37,10 +37,12 @@ public class DiceServlet extends HttpServlet {
 		
 		monopoly ourgame = (monopoly) request.getSession(true).getAttribute("ourgame");
 		
-		Integer movement = ourgame.dice();
+		Integer die1 = ourgame.dice();
+		Integer die2 = ourgame.dice();
+		
 		if(!ourgame.getCurrentPlayer().hasRolled())
 		{
-			ourgame.getCurrentPlayer().incrementLocation(movement);
+			ourgame.getCurrentPlayer().incrementLocation(die1 + die2);
 			ourgame.getCurrentPlayer().set_hasRolled(true);
 		}
 		

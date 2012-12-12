@@ -158,6 +158,20 @@ request.getSession().setAttribute("ourgame", ourgame);
  	   position:relative;
  	   top:100px;
  	   left:300px;
+ 	   z-index = 10;
+ }
+ .RollDice{
+ 	   position:relative;
+ 	   top:120px;
+ 	   left:300px;
+ }
+ 
+ .SetNames{
+ 	   position:relative;
+ 	   top:400px;
+ 	   left:700px;
+ 	   z-index = 15;
+ 
  }
  
  
@@ -178,6 +192,60 @@ request.getSession().setAttribute("ourgame", ourgame);
 //Board
 out.println("<div class=\"Board\">");
 out.println("<div class=\"Dice\">" +  "Current Player is " + ourgame.getCurrentPlayer().returnName() + "</div>");
+out.println("<div class=\"RollDice\">");
+if(!ourgame.returnBuildings().get(ourgame.getCurrentPlayer().returnLocation()).returnOwned())
+{
+	out.println("<FORM action=\"/Monopoly/BuycurrentServlet\" method=\"post\">");
+	out.println("<br>");
+	out.println("<INPUT type=\"submit\" name=\"Submit\" value= \"BUY PROPERTY\">");
+	out.println("</FORM>");
+}
+if(!ourgame.getCurrentPlayer().hasRolled())
+{
+	out.println("<FORM action=\"/Monopoly/DiceServlet\" method=\"post\">");
+	out.println("<br>");
+	out.println("<INPUT type=\"submit\" name=\"Submit\" value= \"Roll Dice\">");
+	out.println("</FORM>");
+}
+else
+{
+	out.println("<FORM action=\"/Monopoly/EndturnServlet\" method=\"post\">");
+	out.println("<br>");
+	out.println("<INPUT type=\"submit\" name=\"Submit\" value= \"End Turn\">");
+	out.println("</FORM>");
+}
+out.println("</div>");
+out.println("<div class=\"SetNames\">");
+if(!ourgame.getPlayera().returnSetName())
+{
+	out.println("<form name=\"input\" action=\"/Monopoly/ChangeNameServlet\" method=\"get\">");
+	out.println("Player1: <input type=\"text\" name=\"user1\">");
+	out.println("<input type=\"submit\" value=\"Submit\">");
+	out.println("</form>");
+}
+if(!ourgame.getPlayerb().returnSetName())
+{
+	out.println("<form name=\"input\" action=\"/Monopoly/ChangeNameServlet\" method=\"get\">");
+	out.println("Player2: <input type=\"text\" name=\"user2\">");
+	out.println("<input type=\"submit\" value=\"Submit\">");
+	out.println("</form>");
+}
+if(!ourgame.getPlayerc().returnSetName())
+{
+	out.println("<form name=\"input\" action=\"/Monopoly/ChangeNameServlet\" method=\"get\">");
+	out.println("Player3: <input type=\"text\" name=\"user3\">");
+	out.println("<input type=\"submit\" value=\"Submit\">");
+	out.println("</form>");
+}
+if(!ourgame.getPlayerd().returnSetName())
+{
+	out.println("<form name=\"input\" action=\"/Monopoly/ChangeNameServlet\" method=\"get\">");
+	out.println("Player4: <input type=\"text\" name=\"user4\">");
+	out.println("<input type=\"submit\" value=\"Submit\">");
+	out.println("</form>");
+}
+out.println("</div>");
+
 out.println("<div class=\"playeronePos\"> </div>");
 out.println("<div class=\"playertwoPos\"> </div>");
 out.println("<div class=\"playerthreePos\"> </div>");
@@ -208,25 +276,12 @@ out.println("</div>");
 
 %>
 
-<FORM action="/Monopoly/DiceServlet" method="post">
-<br>
-<INPUT type="submit" name="Submit" value="Roll Dice">
-</FORM>
-
-<FORM action="/Monopoly/BuycurrentServlet" method="post">
-<br>
-<INPUT type="submit" name="Submit" value= "Buy">
-</FORM>
-
-<FORM action="/Monopoly/EndturnServlet" method="post">
-<br>
-<INPUT type="submit" name="Submit" value= "End Turn">
-</FORM>
 
 <FORM action="/Monopoly/ResetGameServlet" method="post">
 <br>
 <INPUT type="submit" name="Submit" value= "RESET">
 </FORM>
+
 
 
 </body>

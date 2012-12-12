@@ -13,6 +13,7 @@ public class player {
 	private Integer penaltyTurn;
 	private Boolean status;
 	private Boolean hasRolled;
+	private Boolean hasSetName;
 	public player(String pName, Boolean state) {
 		money = 2000;
 		currentLocation = 0;
@@ -23,6 +24,7 @@ public class player {
 		penaltyTurn = 0;
 		status = state;
 		hasRolled = false;
+		hasSetName = false;
 	}
 	
 
@@ -132,6 +134,17 @@ public class player {
 	public void addBuilding(building Building)
 	{
 		landProperty.add(Building);
+	}
+	
+	public void setName(String newName)
+	{
+		playerName = newName;
+		hasSetName = true;
+	}
+	
+	public boolean returnSetName()
+	{
+		return hasSetName;
 	}
 	
 
