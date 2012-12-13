@@ -52,4 +52,9 @@ public class building {
 	{
 		return buyPrice;
 	}
+	
+	public String returnName()
+	{
+		return buildingName;
+	}
 }

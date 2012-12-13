@@ -14,6 +14,7 @@ public class player {
 	private Boolean status;
 	private Boolean hasRolled;
 	private Boolean hasSetName;
+	private Boolean showBuildings = false;
 	public player(String pName, Boolean state) {
 		money = 2000;
 		currentLocation = 0;
@@ -145,6 +146,21 @@ public class player {
 	public boolean returnSetName()
 	{
 		return hasSetName;
+	}
+	
+	public ArrayList<building> returnBuildingList()
+	{
+		return landProperty;
+	}
+	
+	public void setShowBuildings(boolean state)
+	{
+		showBuildings = state;
+	}
+	
+	public Boolean returnShowBuildings()
+	{
+		return showBuildings;
 	}
 	
 
