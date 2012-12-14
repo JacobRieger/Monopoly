@@ -70,6 +70,13 @@ public class player {
 			}
 		}
 	}
+	
+	public void switchMoney(player x)
+	{
+		Integer temp = x.returnMoney();
+		x.money = money;
+		money = temp;
+	}
 
 	public void addMoney(Integer temp){
 		money = money - temp;
@@ -107,6 +114,17 @@ public class player {
 			return false;
 		}
 	}
+	
+	public void OopsJail(){
+		penaltyTurn = 3;
+		setLocation(10);
+	}
+	
+	public void setLocation(Integer place)
+	{
+		currentLocation = place;
+	}
+	
 	public Boolean isJail(){
 		if(penaltyTurn > 0){
 			penaltyTurn--;

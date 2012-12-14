@@ -11,24 +11,24 @@ public class monopoly {
 	private player d = new player("d", false);
 	private Integer dice;
 	private ArrayList<building> buildings;
+
 	public monopoly() {
 		dice = 0;
 		buildings = new ArrayList<building>();
-		
-		building empty = new building("Empty", 0,0,0,5);
-		
-		for(int i = 0; i < 40; i++)
-		{
+
+		building empty = new building("Empty", 0, 0, 0, 5);
+
+		for (int i = 0; i < 40; i++) {
 			buildings.add(i, empty);
 		}
 
 		building start = new building("Go", 0, -200, 0, 5); // this is go, so
-																// visiting
-																// penalty is
-																// negative
-																// number,
-																// giving people
-																// who visits
+															// visiting
+															// penalty is
+															// negative
+															// number,
+															// giving people
+															// who visits
 		buildings.add(0, start);
 
 		building bField = new building("Business Field", 60, 20, 1, 0);
@@ -40,11 +40,11 @@ public class monopoly {
 
 		building fField = new building("Farrand Field", 60, 20, 3, 0);
 		buildings.add(3, fField);
-		
+
 		// parking permit
 		building parkingpermit = new building("parkingpermit", 200, 20, 4, 0);
 		buildings.add(4, parkingpermit);
-		
+
 		// Jump
 		building jump = new building("jump", 200, 30, 5, 0);
 		buildings.add(5, jump);
@@ -62,13 +62,13 @@ public class monopoly {
 
 		building museum = new building("CU Art Museum", 120, 50, 9, 0);
 		buildings.add(9, museum);
-		
-		//jail
-		building jail = new building("jail", 0, 0, 10, 5);
-		buildings.add(10, jail);
 
-		//building visit = new building("Just Visiting", 0, 0, 11, 5);
-		//buildings.add(11, visit);
+		// jail
+		// building jail = new building("jail", 0, 0, 10, 5);
+		// buildings.add(10, jail);
+
+		building visit = new building("Just Visiting", 0, 0, 11, 5);
+		buildings.add(10, visit);
 
 		building mathlib = new building("Math Library", 140, 60, 11, 0);
 		buildings.add(11, mathlib);
@@ -93,15 +93,14 @@ public class monopoly {
 		// chest
 		building chest2 = new building("chest2", 0, 0, 17, 5);
 		buildings.add(17, chest2);
-		
 
 		building crosman = new building("Crosman Hall", 180, 80, 18, 0);
 		buildings.add(18, crosman);
 
 		building aden = new building("Aden Hall", 200, 90, 19, 0);
 		buildings.add(19, aden);
-		
-		//free parking
+
+		// free parking
 		building freeparking = new building("free parking", 0, 0, 20, 5);
 		buildings.add(20, freeparking);
 
@@ -139,15 +138,14 @@ public class monopoly {
 		building gotojail = new building("Go to jail", 0, 0, 30, 5);
 		buildings.add(30, gotojail);
 
-		building engine = new building("Engineering Center", 300, 140, 31,
-				0);
+		building engine = new building("Engineering Center", 300, 140, 31, 0);
 		buildings.add(31, engine);
 
 		building koelbel = new building("Koelbel Building", 300, 140, 32, 0);
 		buildings.add(32, koelbel);
 
 		// chest
-		building chest3 = new building("chance3", 0, 0, 33, 5);
+		building chest3 = new building("chest3", 0, 0, 33, 5);
 		buildings.add(33, chest3);
 
 		building UMC = new building("University Memorial Center", 320, 150, 34,
@@ -157,20 +155,19 @@ public class monopoly {
 		// stampede
 		building stampede = new building("stampede", 200, 160, 35, 0);
 		buildings.add(35, stampede);
-		
+
 		// chance
 		building chance3 = new building("chance3", 0, 0, 36, 5);
 		buildings.add(36, chance3);
-		
+
 		building willvil = new building("Williams Village", 350, 170, 37, 0);
 		buildings.add(37, willvil);
 
 		// parking ticket
-		building parkingticket = new building("parking ticket", 120, 180, 38, 0);
+		building parkingticket = new building("parking ticket", 120, 180, 38, 5);
 		buildings.add(38, parkingticket);
 
-		building bearcreek = new building("Bear Creek Apts", 400, 190, 39,
-				0);
+		building bearcreek = new building("Bear Creek Apts", 400, 190, 39, 0);
 		buildings.add(39, bearcreek);
 	}
 
@@ -188,7 +185,75 @@ public class monopoly {
 			}
 			else{
 			while (a.checkTurn()) {//when a's turn is not over
-				if(buildings.get(a.returnLocation()).returnOwned()){//check if current a's location is owned property
+				if(a.returnLocation() == 30)//jail system
+				{
+					a.OopsJail();
+				}
+				else if(a.returnLocation() == 2 || a.returnLocation() == 17 || a.returnLocation() == 33)//treasure
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						a.recieveMoney(200);
+					}
+					else if(luck == 2)
+					{
+						a.addMoney(150);
+					}
+					else if(luck == 3)
+					{
+						a.recieveMoney(300);
+						b.addMoney(100);
+						c.addMoney(100);
+						d.addMoney(100);
+					}
+					else if(luck == 4)
+					{
+						a.addMoney(150);
+						b.recieveMoney(150);
+					}
+					else if(luck == 5)
+					{
+						a.addMoney(150);
+						c.recieveMoney(150);
+					}
+					else if(luck == 6)
+					{
+						a.addMoney(150);
+						d.recieveMoney(150);
+					}
+				}
+				else if(a.returnLocation() == 7 || a.returnLocation() == 22 || a.returnLocation() == 36)//chance
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						a.switchMoney(b);
+					}
+					else if(luck == 2)
+					{
+						a.switchMoney(c);
+					}
+					else if(luck == 3)
+					{
+						a.switchMoney(d);
+					}
+					else if(luck == 4)
+					{
+						a.Oopsjail();
+					}
+					else if(luck == 5)
+					{
+						a.incrementLocation(2);
+					}
+					else if(luck == 6)
+					{
+						a.incrementLocation(-2);
+					}
+				}
+				else if(buildings.get(a.returnLocation()).returnOwned()){//check if current a's location is owned property
 					a.addMoney(buildings.get(a.returnLocation()).returnPenalty()); //a sends in money
 					//then gives the money to whoever that owns the property.
 					if(buildings.get(a.returnLocation()).returnWhoOwn() == 1){
@@ -226,7 +291,75 @@ public class monopoly {
 			}
 			else{
 			while (b.checkTurn()) {
-				if(buildings.get(b.returnLocation()).returnOwned()){
+				if(b.returnLocation() == 30)
+				{
+					b.OopsJail();
+				}
+				else if(b.returnLocation() == 2 || b.returnLocation() == 17 || b.returnLocation() == 33)
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						b.recieveMoney(200);
+					}
+					else if(luck == 2)
+					{
+						b.addMoney(150);
+					}
+					else if(luck == 3)
+					{
+						b.recieveMoney(300);
+						a.addMoney(100);
+						c.addMoney(100);
+						d.addMoney(100);
+					}
+					else if(luck == 4)
+					{
+						b.addMoney(150);
+						a.recieveMoney(150);
+					}
+					else if(luck == 5)
+					{
+						b.addMoney(150);
+						c.recieveMoney(150);
+					}
+					else if(luck == 6)
+					{
+						b.addMoney(150);
+						d.recieveMoney(150);
+					}
+				}
+				else if(b.returnLocation() == 7 || b.returnLocation() == 22 || b.returnLocation() == 36)
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						b.switchMoney(a);
+					}
+					else if(luck == 2)
+					{
+						b.switchMoney(c);
+					}
+					else if(luck == 3)
+					{
+						b.switchMoney(d);
+					}
+					else if(luck == 4)
+					{
+						b.Oopsjail();
+					}
+					else if(luck == 5)
+					{
+						b.incrementLocation(2);
+					}
+					else if(luck == 6)
+					{
+						b.incrementLocation(-2);
+					}
+				}
+			else if(buildings.get(b.returnLocation()).returnOwned()){
 					b.addMoney(buildings.get(b.returnLocation()).returnPenalty());
 					if(buildings.get(b.returnLocation()).returnWhoOwn() == 1){
 						a.recieveMoney(buildings.get(b.returnLocation()).returnPenalty());
@@ -258,7 +391,76 @@ public class monopoly {
 			}
 			else{
 			while (c.checkTurn()) {
-				if(buildings.get(c.returnLocation()).returnOwned()){
+
+				if(c.returnLocation() == 30)
+				{
+					c.OopsJail();
+				}
+				else if(c.returnLocation() == 2 || c.returnLocation() == 17 || c.returnLocation() == 33)
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						c.recieveMoney(200);
+					}
+					else if(luck == 2)
+					{
+						c.addMoney(150);
+					}
+					else if(luck == 3)
+					{
+						c.recieveMoney(300);
+						b.addMoney(100);
+						a.addMoney(100);
+						d.addMoney(100);
+					}
+					else if(luck == 4)
+					{
+						c.addMoney(150);
+						b.recieveMoney(150);
+					}
+					else if(luck == 5)
+					{
+						c.addMoney(150);
+						a.recieveMoney(150);
+					}
+					else if(luck == 6)
+					{
+						c.addMoney(150);
+						d.recieveMoney(150);
+					}
+				}
+				else if(c.returnLocation() == 7 || c.returnLocation() == 22 || c.returnLocation() == 36)
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						c.switchMoney(b);
+					}
+					else if(luck == 2)
+					{
+						c.switchMoney(a);
+					}
+					else if(luck == 3)
+					{
+						c.switchMoney(d);
+					}
+					else if(luck == 4)
+					{
+						c.Oopsjail();
+					}
+					else if(luck == 5)
+					{
+						c.incrementLocation(2);
+					}
+					else if(luck == 6)
+					{
+						c.incrementLocation(-2);
+					}
+				}
+			else if(buildings.get(c.returnLocation()).returnOwned()){
 					c.addMoney(buildings.get(c.returnLocation()).returnPenalty());
 					if(buildings.get(c.returnLocation()).returnWhoOwn() == 1){
 						a.recieveMoney(buildings.get(c.returnLocation()).returnPenalty());
@@ -289,7 +491,76 @@ public class monopoly {
 			}
 			else{
 			while (d.checkTurn()) {
-				if(buildings.get(d.returnLocation()).returnOwned()){
+	
+				if(d.returnLocation() == 30)
+				{
+					d.OopsJail();
+				}
+				else if(d.returnLocation() == 2 || d.returnLocation() == 17 || d.returnLocation() == 33)
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						d.recieveMoney(200);
+					}
+					else if(luck == 2)
+					{
+						d.addMoney(150);
+					}
+					else if(luck == 3)
+					{
+						d.recieveMoney(300);
+						b.addMoney(100);
+						c.addMoney(100);
+						a.addMoney(100);
+					}
+					else if(luck == 4)
+					{
+						d.addMoney(150);
+						b.recieveMoney(150);
+					}
+					else if(luck == 5)
+					{
+						d.addMoney(150);
+						c.recieveMoney(150);
+					}
+					else if(luck == 6)
+					{
+						d.addMoney(150);
+						a.recieveMoney(150);
+					}
+				}
+				else if(d.returnLocation() == 7 || d.returnLocation() == 22 || d.returnLocation() == 36)
+				{
+					Integer luck;
+					luck = dice();
+					if(luck == 1)
+					{
+						d.switchMoney(b);
+					}
+					else if(luck == 2)
+					{
+						d.switchMoney(c);
+					}
+					else if(luck == 3)
+					{
+						d.switchMoney(a);
+					}
+					else if(luck == 4)
+					{
+						d.Oopsjail();
+					}
+					else if(luck == 5)
+					{
+						d.incrementLocation(2);
+					}
+					else if(luck == 6)
+					{
+						d.incrementLocation(-2);
+					}
+				}
+				else if(buildings.get(d.returnLocation()).returnOwned()){
 					d.addMoney(buildings.get(d.returnLocation()).returnPenalty());
 					if(buildings.get(d.returnLocation()).returnWhoOwn() == 1){
 						a.recieveMoney(buildings.get(d.returnLocation()).returnPenalty());
@@ -316,96 +587,84 @@ public class monopoly {
 		}
 
 	}
-	
-	public void endTurn(){
-		if(a.checkTurn()){
+
+	public void endTurn() {
+		if (a.checkTurn()) {
 			a.set_status(false);
 			b.set_status(true);
-		}
-		else if(b.checkTurn()){
+		} else if (b.checkTurn()) {
 			b.set_status(false);
 			c.set_status(true);
-		}
-		else if(c.checkTurn()){
+		} else if (c.checkTurn()) {
 			c.set_status(false);
 			d.set_status(true);
-		}
-		else if(d.checkTurn()){
+		} else if (d.checkTurn()) {
 			d.set_status(false);
 			a.set_status(true);
 		}
 	}
-	
-	public player getCurrentPlayer()
-	{
-		if(a.checkTurn()) return a;
-		if(b.checkTurn()) return b;
-		if(c.checkTurn()) return c;
-		if(d.checkTurn()) return d;
-		
+
+	public player getCurrentPlayer() {
+		if (a.checkTurn())
+			return a;
+		if (b.checkTurn())
+			return b;
+		if (c.checkTurn())
+			return c;
+		if (d.checkTurn())
+			return d;
+
 		System.out.println("Error in getCurrentPlayer");
 		return a;
 	}
-	
-	public void buyCurrentLocation()
-	{
+
+	public void buyCurrentLocation() {
 		player current = getCurrentPlayer();
 		building currentb = buildings.get(current.returnLocation());
 		Integer Price = currentb.buyPrice();
-		
-		
-		if(!currentb.returnOwned() && current.returnMoney() > Price)
-		{
-			if(current.equals(this.getPlayera()))
-			{
+
+		if (!currentb.returnOwned() && current.returnMoney() > Price) {
+			if (current.equals(this.getPlayera())) {
 				currentb.changeProp(1);
 			}
-			if(current.equals(this.getPlayerb()))
-			{
+			if (current.equals(this.getPlayerb())) {
 				currentb.changeProp(2);
 			}
-			if(current.equals(this.getPlayerc()))
-			{
+			if (current.equals(this.getPlayerc())) {
 				currentb.changeProp(3);
 			}
-			if(current.equals(this.getPlayerd()))
-			{
+			if (current.equals(this.getPlayerd())) {
 				currentb.changeProp(4);
 			}
 			current.addMoney(Price);
 			current.addBuilding(currentb);
 		}
 	}
-	
-	public void ChangeCurrentPlayerName(String newName)
-	{
+
+	public void ChangeCurrentPlayerName(String newName) {
 		player current = this.getCurrentPlayer();
-		
+
 		current.setName(newName);
 	}
-	
-	public ArrayList<building> returnBuildings()
-	{
+
+	public ArrayList<building> returnBuildings() {
 		return buildings;
 	}
-	
-	public player getPlayera()
-	{
+
+	public player getPlayera() {
 		return a;
 	}
-	public player getPlayerb()
-	{
+
+	public player getPlayerb() {
 		return b;
 	}
-	public player getPlayerc()
-	{
+
+	public player getPlayerc() {
 		return c;
 	}
-	public player getPlayerd()
-	{
+
+	public player getPlayerd() {
 		return d;
 	}
-	
-	
-	
+
 }
