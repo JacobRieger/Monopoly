@@ -13,7 +13,7 @@ public class monopoly {
 	private ArrayList<building> buildings;
 	private boolean chance = false;
 	private boolean treasure = false;
-
+	private String chatlog;
 	public monopoly() {
 		dice = 0;
 		buildings = new ArrayList<building>();
@@ -184,6 +184,7 @@ public class monopoly {
 			while (a.checkTurn()) {//when a's turn is not over
 				if(a.returnLocation() == 30)//jail system
 				{
+					chatlog = "Player has commited a crime!, goes to jail!";
 					a.OopsJail();
 				}
 				else if(a.returnLocation() == 2 || a.returnLocation() == 17 || a.returnLocation() == 33)//treasure
@@ -192,15 +193,18 @@ public class monopoly {
 					Integer luck;
 					luck = dice();
 					if(luck == 1)
-					{
+					{	
+						chatlog = "Picked up a lost wallet!";
 						a.recieveMoney(200);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Met a homeless guy. Player was drunk and gave him $150";
 						a.addMoney(150);
 					}
 					else if(luck == 3)
 					{
+						chatlog = a.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
 						a.recieveMoney(300);
 						b.addMoney(100);
 						c.addMoney(100);
@@ -208,16 +212,19 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
+						chatlog = a.returnName() + " Lost a $150 bet aginst " + b.returnName();
 						a.addMoney(150);
 						b.recieveMoney(150);
 					}
 					else if(luck == 5)
 					{
+						chatlog = a.returnName() + " Lost a $150 bet aginst " + c.returnName();
 						a.addMoney(150);
 						c.recieveMoney(150);
 					}
 					else if(luck == 6)
 					{
+						chatlog = a.returnName() + " Lost a $150 bet aginst " + d.returnName();
 						a.addMoney(150);
 						d.recieveMoney(150);
 					}
@@ -230,26 +237,32 @@ public class monopoly {
 					luck = dice();
 					if(luck == 1)
 					{
+						chatlog = "Chance!: " + a.returnName() + " switches money with " + b.returnName();
 						a.switchMoney(b);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Chance!: " + a.returnName() + " switches money with " + c.returnName();
 						a.switchMoney(c);
 					}
 					else if(luck == 3)
 					{
+						chatlog = "Chance!: " + a.returnName() + " switches money with " + d.returnName();
 						a.switchMoney(d);
 					}
 					else if(luck == 4)
 					{
-						a.OopsJail();
+						chatlog = "Oops, " + a.returnName() + " has punched a policeman. Goes to jail.";
+						a.Oopsjail();
 					}
 					else if(luck == 5)
 					{
+						chatlog = "Mad dog chases " + a.returnName() + ", move 2 times.";
 						a.incrementLocation(2);
 					}
 					else if(luck == 6)
 					{
+						chatlog = a.returnName() + " left Final project! moves 2 times back.";
 						a.incrementLocation(-2);
 					}
 					chance = true;
@@ -295,6 +308,7 @@ public class monopoly {
 			while (b.checkTurn()) {
 				if(b.returnLocation() == 30)
 				{
+					chatlog = "Player has commited a crime!, goes to jail!";
 					b.OopsJail();
 				}
 				else if(b.returnLocation() == 2 || b.returnLocation() == 17 || b.returnLocation() == 33)
@@ -303,14 +317,17 @@ public class monopoly {
 					luck = dice();
 					if(luck == 1)
 					{
+						chatlog = "Picked up a lost wallet!";
 						b.recieveMoney(200);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Met a homeless guy. Player was drunk and gave him $150";
 						b.addMoney(150);
 					}
 					else if(luck == 3)
 					{
+						chatlog = b.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
 						b.recieveMoney(300);
 						a.addMoney(100);
 						c.addMoney(100);
@@ -318,16 +335,19 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
+						chatlog = b.returnName() + " Lost a $150 bet aginst " + a.returnName();
 						b.addMoney(150);
 						a.recieveMoney(150);
 					}
 					else if(luck == 5)
 					{
+						chatlog = b.returnName() + " Lost a $150 bet aginst " + c.returnName();
 						b.addMoney(150);
 						c.recieveMoney(150);
 					}
 					else if(luck == 6)
 					{
+						chatlog = b.returnName() + " Lost a $150 bet aginst " + d.returnName();
 						b.addMoney(150);
 						d.recieveMoney(150);
 					}
@@ -340,26 +360,32 @@ public class monopoly {
 					luck = dice();
 					if(luck == 1)
 					{
+						chatlog = "Chance!: " + b.returnName() + " switches money with " + a.returnName();
 						b.switchMoney(a);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Chance!: " + b.returnName() + " switches money with " + c.returnName();
 						b.switchMoney(c);
 					}
 					else if(luck == 3)
 					{
+						chatlog = "Chance!: " + b.returnName() + " switches money with " + d.returnName();
 						b.switchMoney(d);
 					}
 					else if(luck == 4)
 					{
-						b.OopsJail();
+						chatlog = "Oops, " + b.returnName() + " has punched a policeman. Goes to jail.";
+						b.Oopsjail();
 					}
 					else if(luck == 5)
 					{
+						chatlog = "Mad dog chases " + b.returnName() + ", move 2 times.";
 						b.incrementLocation(2);
 					}
 					else if(luck == 6)
 					{
+						chatlog = b.returnName() + " left Final project! moves 2 times back.";
 						b.incrementLocation(-2);
 					}
 					chance = true;
@@ -400,6 +426,7 @@ public class monopoly {
 
 				if(c.returnLocation() == 30)
 				{
+					chatlog = "Player has commited a crime!, goes to jail!";
 					c.OopsJail();
 				}
 				else if(c.returnLocation() == 2 || c.returnLocation() == 17 || c.returnLocation() == 33)
@@ -408,14 +435,17 @@ public class monopoly {
 					luck = dice();
 					if(luck == 1)
 					{
+						chatlog = "Picked up a lost wallet!";
 						c.recieveMoney(200);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Met a homeless guy. Player was drunk and gave him $150";
 						c.addMoney(150);
 					}
 					else if(luck == 3)
 					{
+						chatlog = c.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
 						c.recieveMoney(300);
 						b.addMoney(100);
 						a.addMoney(100);
@@ -423,16 +453,19 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
+						chatlog = c.returnName() + " Lost a $150 bet aginst " + b.returnName();
 						c.addMoney(150);
 						b.recieveMoney(150);
 					}
 					else if(luck == 5)
 					{
+						chatlog = c.returnName() + " Lost a $150 bet aginst " + a.returnName();
 						c.addMoney(150);
 						a.recieveMoney(150);
 					}
 					else if(luck == 6)
 					{
+						chatlog = c.returnName() + " Lost a $150 bet aginst " + d.returnName();
 						c.addMoney(150);
 						d.recieveMoney(150);
 					}
@@ -445,26 +478,32 @@ public class monopoly {
 					luck = dice();
 					if(luck == 1)
 					{
+						chatlog = "Chance!: " + c.returnName() + " switches money with " + b.returnName();
 						c.switchMoney(b);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Chance!: " + c.returnName() + " switches money with " + a.returnName();
 						c.switchMoney(a);
 					}
 					else if(luck == 3)
 					{
+						chatlog = "Chance!: " + c.returnName() + " switches money with " + d.returnName();
 						c.switchMoney(d);
 					}
 					else if(luck == 4)
 					{
-						c.OopsJail();
+						chatlog = "Oops, " + c.returnName() + " has punched a policeman. Goes to jail.";
+						c.Oopsjail();
 					}
 					else if(luck == 5)
 					{
+						chatlog = "Mad dog chases " + c.returnName() + ", move 2 times.";
 						c.incrementLocation(2);
 					}
 					else if(luck == 6)
 					{
+						chatlog = c.returnName() + " left Final project! moves 2 times back.";
 						c.incrementLocation(-2);
 					}
 					chance = true;
@@ -504,6 +543,7 @@ public class monopoly {
 	
 				if(d.returnLocation() == 30)
 				{
+					chatlog = "Player has commited a crime!, goes to jail!";
 					d.OopsJail();
 				}
 				else if(d.returnLocation() == 2 || d.returnLocation() == 17 || d.returnLocation() == 33)
@@ -512,14 +552,17 @@ public class monopoly {
 					luck = dice();
 					if(luck == 1)
 					{
+						chatlog = "Picked up a lost wallet!";
 						d.recieveMoney(200);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Met a homeless guy. Player was drunk and gave him $150";
 						d.addMoney(150);
 					}
 					else if(luck == 3)
 					{
+						chatlog = d.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
 						d.recieveMoney(300);
 						b.addMoney(100);
 						c.addMoney(100);
@@ -527,16 +570,19 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
+						chatlog = d.returnName() + " Lost a $150 bet aginst " + b.returnName();
 						d.addMoney(150);
 						b.recieveMoney(150);
 					}
 					else if(luck == 5)
 					{
+						chatlog = d.returnName() + " Lost a $150 bet aginst " + c.returnName();
 						d.addMoney(150);
 						c.recieveMoney(150);
 					}
 					else if(luck == 6)
 					{
+						chatlog = d.returnName() + " Lost a $150 bet aginst " + a.returnName();
 						d.addMoney(150);
 						a.recieveMoney(150);
 					}
@@ -549,26 +595,32 @@ public class monopoly {
 					luck = dice();
 					if(luck == 1)
 					{
+						chatlog = "Chance!: " + d.returnName() + " switches money with " + b.returnName();
 						d.switchMoney(b);
 					}
 					else if(luck == 2)
 					{
+						chatlog = "Chance!: " + d.returnName() + " switches money with " + c.returnName();
 						d.switchMoney(c);
 					}
 					else if(luck == 3)
 					{
+						chatlog = "Chance!: " + d.returnName() + " switches money with " + a.returnName();
 						d.switchMoney(a);
 					}
 					else if(luck == 4)
 					{
-						d.OopsJail();
+						chatlog = "Oops, " + d.returnName() + " has punched a policeman. Goes to jail.";
+						d.Oopsjail();
 					}
 					else if(luck == 5)
 					{
+						chatlog = "Mad dog chases " + d.returnName() + ", move 2 times.";
 						d.incrementLocation(2);
 					}
 					else if(luck == 6)
 					{
+						chatlog = d.returnName() + " left Final project! moves 2 times back.";
 						d.incrementLocation(-2);
 					}
 					chance = true;
@@ -603,6 +655,7 @@ public class monopoly {
 	}
 
 	public void endTurn() {
+		chatlog = getCurrentPlayer().returnName() + " ended turn";
 		if (a.checkTurn()) {
 			a.set_status(false);
 			b.set_status(true);
@@ -636,7 +689,7 @@ public class monopoly {
 		player current = getCurrentPlayer();
 		building currentb = buildings.get(current.returnLocation());
 		Integer Price = currentb.buyPrice();
-
+		chatlog = "Player Bought " + currentb.returnName();
 		if (!currentb.returnOwned() && current.returnMoney() > Price) {
 			if (current.equals(this.getPlayera())) {
 				currentb.changeProp(1);
