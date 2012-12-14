@@ -4,7 +4,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="monopolyCode.monopoly" %>
 <%@ page import="monopolyCode.background" %>
-<%@ page import="monopolyCode.Dice" %>
 <%@ page import="monopolyCode.player" %>
 <%@ page import="monopolyCode.building" %>
 <%@ page import="monopolyCode.boardPosition" %>
@@ -19,7 +18,6 @@
 
 boardPosition Positioning = (boardPosition) request.getSession(true).getAttribute("positioning");
 background Board = (background) request.getSession(true).getAttribute("board");
-Dice ourDice = (Dice) request.getSession(true).getAttribute("dice");
 monopoly ourgame = (monopoly) request.getSession(true).getAttribute("ourgame");
 
 
@@ -28,10 +26,7 @@ if(Board == null)
 	Board = new background();
 	Board.createBoard();
 }
-if(ourDice == null)
-{
-	ourDice = new Dice();
-}
+
 if(Positioning == null)
 {
 	Positioning = new boardPosition();
@@ -47,7 +42,6 @@ if(ourgame == null)
 
 
 request.getSession().setAttribute("board", Board);
-request.getSession().setAttribute("dice", ourDice);
 request.getSession().setAttribute("ourgame", ourgame);
 
 %>
@@ -204,6 +198,16 @@ request.getSession().setAttribute("ourgame", ourgame);
 //Our Board div starts here
 out.println("<div class=\"Board\">");
 out.println("<div class=\"Dice\">" +  "Current Player is " + ourgame.getCurrentPlayer().returnName() + "</div>");
+if(ourgame.getChance())
+{
+	out.println("<div class=\"Dice\">" +  "Chance was " + ourgame.getCurrentPlayer().returnName() + "</div>");
+	ourgame.setChance(false);
+}
+if(ourgame.getTreasure())
+{
+	out.println("<div class=\"Dice\">" +  "Treasure was " + ourgame.getCurrentPlayer().returnName() + "</div>");
+	ourgame.setTreasure(false);
+}
 out.println("<div class=\"RollDice\">");
 //Code that decides whether or not to show the Buy button
 if(!ourgame.returnBuildings().get(ourgame.getCurrentPlayer().returnLocation()).returnOwned())

@@ -53,6 +53,7 @@ public class player {
 	{
 		if(diceroll + this.currentLocation < 39)
 		{
+			money = money + 200;
 			this.currentLocation = this.currentLocation + diceroll;
 		}
 		else
@@ -61,6 +62,7 @@ public class player {
 			{
 				if(this.currentLocation == 39)
 				{
+					
 					this.currentLocation = 0;
 				}
 				else

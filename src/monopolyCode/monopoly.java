@@ -11,6 +11,8 @@ public class monopoly {
 	private player d = new player("d", false);
 	private Integer dice;
 	private ArrayList<building> buildings;
+	private boolean chance = false;
+	private boolean treasure = false;
 
 	public monopoly() {
 		dice = 0;
@@ -22,13 +24,8 @@ public class monopoly {
 			buildings.add(i, empty);
 		}
 
-		building start = new building("Go", 0, -200, 0, 5); // this is go, so
-															// visiting
-															// penalty is
-															// negative
-															// number,
-															// giving people
-															// who visits
+		building start = new building("Go", 0, 0, 0, 5); //Changed Go, so people only
+														    //get money when passing, not landing on it
 		buildings.add(0, start);
 
 		building bField = new building("Business Field", 60, 20, 1, 0);
@@ -191,6 +188,7 @@ public class monopoly {
 				}
 				else if(a.returnLocation() == 2 || a.returnLocation() == 17 || a.returnLocation() == 33)//treasure
 				{
+					System.out.println("Inside WhosTurn");
 					Integer luck;
 					luck = dice();
 					if(luck == 1)
@@ -223,6 +221,8 @@ public class monopoly {
 						a.addMoney(150);
 						d.recieveMoney(150);
 					}
+					treasure = true;
+					endTurn();
 				}
 				else if(a.returnLocation() == 7 || a.returnLocation() == 22 || a.returnLocation() == 36)//chance
 				{
@@ -242,7 +242,7 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
-						a.Oopsjail();
+						a.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -252,6 +252,8 @@ public class monopoly {
 					{
 						a.incrementLocation(-2);
 					}
+					chance = true;
+					endTurn();
 				}
 				else if(buildings.get(a.returnLocation()).returnOwned()){//check if current a's location is owned property
 					a.addMoney(buildings.get(a.returnLocation()).returnPenalty()); //a sends in money
@@ -329,6 +331,8 @@ public class monopoly {
 						b.addMoney(150);
 						d.recieveMoney(150);
 					}
+					treasure = true;
+					endTurn();
 				}
 				else if(b.returnLocation() == 7 || b.returnLocation() == 22 || b.returnLocation() == 36)
 				{
@@ -348,7 +352,7 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
-						b.Oopsjail();
+						b.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -358,6 +362,8 @@ public class monopoly {
 					{
 						b.incrementLocation(-2);
 					}
+					chance = true;
+					endTurn();
 				}
 			else if(buildings.get(b.returnLocation()).returnOwned()){
 					b.addMoney(buildings.get(b.returnLocation()).returnPenalty());
@@ -430,6 +436,8 @@ public class monopoly {
 						c.addMoney(150);
 						d.recieveMoney(150);
 					}
+					treasure = true;
+					endTurn();
 				}
 				else if(c.returnLocation() == 7 || c.returnLocation() == 22 || c.returnLocation() == 36)
 				{
@@ -449,7 +457,7 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
-						c.Oopsjail();
+						c.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -459,6 +467,8 @@ public class monopoly {
 					{
 						c.incrementLocation(-2);
 					}
+					chance = true;
+					endTurn();
 				}
 			else if(buildings.get(c.returnLocation()).returnOwned()){
 					c.addMoney(buildings.get(c.returnLocation()).returnPenalty());
@@ -530,6 +540,8 @@ public class monopoly {
 						d.addMoney(150);
 						a.recieveMoney(150);
 					}
+					treasure = true;
+					endTurn();
 				}
 				else if(d.returnLocation() == 7 || d.returnLocation() == 22 || d.returnLocation() == 36)
 				{
@@ -549,7 +561,7 @@ public class monopoly {
 					}
 					else if(luck == 4)
 					{
-						d.Oopsjail();
+						d.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -559,6 +571,8 @@ public class monopoly {
 					{
 						d.incrementLocation(-2);
 					}
+					chance = true;
+					endTurn();
 				}
 				else if(buildings.get(d.returnLocation()).returnOwned()){
 					d.addMoney(buildings.get(d.returnLocation()).returnPenalty());
@@ -665,6 +679,26 @@ public class monopoly {
 
 	public player getPlayerd() {
 		return d;
+	}
+	
+	public void setChance(boolean set)
+	{
+		chance = set;
+	}
+	
+	public void setTreasure(boolean set)
+	{
+		treasure = set;
+	}
+	
+	public boolean getChance()
+	{
+		return chance;
+	}
+	
+	public boolean getTreasure()
+	{
+		return treasure;
 	}
 
 }
