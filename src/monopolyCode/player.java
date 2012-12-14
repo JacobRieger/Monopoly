@@ -87,7 +87,7 @@ public class player {
 	}
 	
 	public Boolean checkBroke(){
-		if(money < 0)
+		if(money <= 0)
 			return true;
 		else
 			return false;
