@@ -51,24 +51,31 @@ public class player {
 	
 	public void incrementLocation(Integer diceroll)
 	{
-		if(diceroll + this.currentLocation < 39)
+		if(penaltyTurn == 0)
 		{
-			this.currentLocation = this.currentLocation + diceroll;
+			if(diceroll + this.currentLocation < 39)
+			{
+				this.currentLocation = this.currentLocation + diceroll;
+			}
+			else
+			{
+				for(int i = 0; i < diceroll; i++)
+				{
+					if(this.currentLocation == 39)
+					{
+						money = money + 200;
+						this.currentLocation = 0;
+					}
+					else
+					{
+						this.currentLocation = this.currentLocation + 1;
+					}
+				}
+			}
 		}
 		else
 		{
-			for(int i = 0; i < diceroll; i++)
-			{
-				if(this.currentLocation == 39)
-				{
-					money = money + 200;
-					this.currentLocation = 0;
-				}
-				else
-				{
-					this.currentLocation = this.currentLocation + 1;
-				}
-			}
+			penaltyTurn = penaltyTurn - 1;
 		}
 	}
 	

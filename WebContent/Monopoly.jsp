@@ -183,6 +183,12 @@ request.getSession().setAttribute("ourgame", ourgame);
  
  }
  
+ .Chatlog{
+ 	   position:relative;
+ 	   top:100px;
+ 	   left:250px;
+ }
+ 
  
 
  }
@@ -200,12 +206,12 @@ out.println("<div class=\"Board\">");
 out.println("<div class=\"Dice\">" +  "Current Player is " + ourgame.getCurrentPlayer().returnName() + "</div>");
 if(ourgame.getChance())
 {
-	out.println("<div class=\"Dice\">" +  "Chance was "  + "for " + ourgame.getCurrentPlayer().returnName()+ "</div>");
+	out.println("<div class=\"Chatlog\">" + ourgame.getChatlog() + "</div>");
 	ourgame.setChance(false);
 }
 if(ourgame.getTreasure())
 {
-	out.println("<div class=\"Dice\">" +  "Treasure was " + "for " + ourgame.getCurrentPlayer().returnName()+ "</div>");
+	out.println("<div class=\"Chatlog\">" + ourgame.getChatlog() +  "</div>");
 	ourgame.setTreasure(false);
 }
 out.println("<div class=\"RollDice\">");

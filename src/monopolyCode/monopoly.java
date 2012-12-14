@@ -189,7 +189,7 @@ public class monopoly {
 				}
 				else if(a.returnLocation() == 2 || a.returnLocation() == 17 || a.returnLocation() == 33)//treasure
 				{
-					System.out.println("Inside WhosTurn");
+					//System.out.println("Inside WhosTurn");
 					Integer luck;
 					luck = dice();
 					if(luck == 1)
@@ -204,7 +204,7 @@ public class monopoly {
 					}
 					else if(luck == 3)
 					{
-						chatlog = a.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
+						chatlog = a.returnName() + " Won a bet vs other players! Recieves $100 from each player!";
 						a.recieveMoney(300);
 						b.addMoney(100);
 						c.addMoney(100);
@@ -253,7 +253,7 @@ public class monopoly {
 					else if(luck == 4)
 					{
 						chatlog = "Oops, " + a.returnName() + " has punched a policeman. Goes to jail.";
-						a.Oopsjail();
+						a.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -327,7 +327,7 @@ public class monopoly {
 					}
 					else if(luck == 3)
 					{
-						chatlog = b.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
+						chatlog = b.returnName() + " Won a bet vs other players! Recieves $100 from each player!";
 						b.recieveMoney(300);
 						a.addMoney(100);
 						c.addMoney(100);
@@ -376,7 +376,7 @@ public class monopoly {
 					else if(luck == 4)
 					{
 						chatlog = "Oops, " + b.returnName() + " has punched a policeman. Goes to jail.";
-						b.Oopsjail();
+						b.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -445,7 +445,7 @@ public class monopoly {
 					}
 					else if(luck == 3)
 					{
-						chatlog = c.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
+						chatlog = c.returnName() + " Won a bet vs other players! Recieves $100 from each player!";
 						c.recieveMoney(300);
 						b.addMoney(100);
 						a.addMoney(100);
@@ -494,7 +494,7 @@ public class monopoly {
 					else if(luck == 4)
 					{
 						chatlog = "Oops, " + c.returnName() + " has punched a policeman. Goes to jail.";
-						c.Oopsjail();
+						c.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -562,7 +562,7 @@ public class monopoly {
 					}
 					else if(luck == 3)
 					{
-						chatlog = d.returnName() + " Won a bet vs other players! Recieves $100 from each player!"
+						chatlog = d.returnName() + " Won a bet vs other players! Recieves $100 from each player!";
 						d.recieveMoney(300);
 						b.addMoney(100);
 						c.addMoney(100);
@@ -611,7 +611,7 @@ public class monopoly {
 					else if(luck == 4)
 					{
 						chatlog = "Oops, " + d.returnName() + " has punched a policeman. Goes to jail.";
-						d.Oopsjail();
+						d.OopsJail();
 					}
 					else if(luck == 5)
 					{
@@ -655,7 +655,7 @@ public class monopoly {
 	}
 
 	public void endTurn() {
-		chatlog = getCurrentPlayer().returnName() + " ended turn";
+		//chatlog = getCurrentPlayer().returnName() + " ended turn";
 		if (a.checkTurn()) {
 			a.set_status(false);
 			b.set_status(true);
@@ -752,6 +752,11 @@ public class monopoly {
 	public boolean getTreasure()
 	{
 		return treasure;
+	}
+	
+	public String getChatlog()
+	{
+		return chatlog;
 	}
 
 }
